@@ -41,14 +41,16 @@
 	gpio-keys {
 		compatible = "gpio-keys";
 
-		reset-button {
+		button-reset {
 			label = "reset";
-			gpios = <&gpio 0 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
 		};
 
-		mesh-button {
+		button-mesh {
 			label = "mesh";
-			gpios = <&gpio 1 GPIO_ACTIVE_LOW>;
+			linux,code = <BTN_9>;
+			gpios = <&gpio 0 GPIO_ACTIVE_HIGH>;
 		};
 	};
 
@@ -70,6 +72,14 @@
 			gpios = <&gpio 12 GPIO_ACTIVE_LOW>;
 		};
 	};
+	memory@40000000 {
+		device_type = "memory";
+		reg = <0x40000000 0x10000000>;
+	};
+
+	bl2_verify {
+		bl2_compatible = "spim-nand";
+	};
 };
 
 &uart0 {
@@ -79,12 +89,12 @@
 &eth {
 	status = "okay";
 	mediatek,gmac-id = <0>;
-	phy-mode = "sgmii";
+	phy-mode = "2500base-x";
 	mediatek,switch = "mt7531";
 	reset-gpios = <&gpio 39 GPIO_ACTIVE_HIGH>;
 
 	fixed-link {
-		speed = <1000>;
+		speed = <2500>;
 		full-duplex;
 	};
 };
