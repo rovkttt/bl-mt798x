@@ -7,7 +7,7 @@
 / {
 	#address-cells = <1>;
 	#size-cells = <1>;
-	model = "mt7981-newland_nl-wr8103";
+	model = "mt7981-E-Life-ETR631-T_FM-ROM";
 	compatible = "mediatek,mt7981", "mediatek,mt7981-rfb";
 
 	chosen {
@@ -23,32 +23,32 @@
 
 	mtd-layout {
 		layout@0 {
-			label = "default";
-			// mtd layout for stock 48m ubi firmware
+			label = "default_64M";
+			// mtd layout for clt_r30b1/nx30pro stock ubi or openwrt-stock/immortalwrt-stock firmware
 			mtdids = "nmbm0=nmbm0";
-			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(factory),2048k(fip),49152k(ubi),49152k(ubi1)";
+			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),64M(ubi)";
 		};
+		
         layout@1 {
-			label = "immortalwrt-112m";
+			label = "immortalwrt-112M";
 			// mtd layout for immortalwrt/openwrt 112M ubi firmware
 			mtdids = "nmbm0=nmbm0";
 			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),112M(ubi)";
 		};
 
 		layout@2 {
-			label = "qwrt";
+			label = "qwrt_110M";
 			// mtd layout for lean qwrt
 			mtdids = "nmbm0=nmbm0";
 			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),1024k(rsv0),110M(ubi)";
 		};
 		
 		layout@3 {
-			label = "expand(114m)";
+			label = "expand(114M)";
 			// mtd layout for 114m ubi firmware
 			mtdids = "nmbm0=nmbm0";
-			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(factory),2048k(fip),116736k(ubi)";
+			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),114M(ubi)";
 		};
-
 	};
 
 	gpio-keys {
