@@ -7,7 +7,7 @@
 / {
 	#address-cells = <1>;
 	#size-cells = <1>;
-	model = "mt7981-E-Life-ETR631-T_FM-ROM";
+	model = "mt7981-newland_nl-wr8103";
 	compatible = "mediatek,mt7981", "mediatek,mt7981-rfb";
 
 	chosen {
@@ -23,32 +23,25 @@
 
 	mtd-layout {
 		layout@0 {
-			label = "default_64M";
-			// mtd layout for clt_r30b1/nx30pro stock ubi or openwrt-stock/immortalwrt-stock firmware
+			label = "default";
+			// mtd layout for stock 48m ubi firmware
 			mtdids = "nmbm0=nmbm0";
-			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),64M(ubi)";
+			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(factory),2048k(fip),49152k(ubi),49152k(ubi1)";
 		};
-		
+
         layout@1 {
-			label = "immortalwrt-112M";
+			label = "immortalwrt(112m)";
 			// mtd layout for immortalwrt/openwrt 112M ubi firmware
 			mtdids = "nmbm0=nmbm0";
 			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),112M(ubi)";
 		};
-
 		layout@2 {
-			label = "qwrt_110M";
-			// mtd layout for lean qwrt
-			mtdids = "nmbm0=nmbm0";
-			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),1024k(rsv0),110M(ubi)";
-		};
-		
-		layout@3 {
-			label = "expand(114M)";
+			label = "expand(114m)";
 			// mtd layout for 114m ubi firmware
 			mtdids = "nmbm0=nmbm0";
-			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(Factory),2048k(fip),114M(ubi)";
+			mtdparts = "nmbm0:1024k(bl2),512k(u-boot-env),2048k(factory),2048k(fip),116736k(ubi)";
 		};
+
 	};
 
 	gpio-keys {
@@ -71,21 +64,20 @@
 		compatible = "gpio-leds";
 
 		led@0 {
-			label = "green:system";
-			gpios = <&gpio 8 GPIO_ACTIVE_LOW>;
+			label = "red:system";
+			gpios = <&gpio 10 GPIO_ACTIVE_LOW>;
 		};
 
 		led@1 {
-			label = "blue:system";
-			gpios = <&gpio 13 GPIO_ACTIVE_LOW>;
+			label = "green:system";
+			gpios = <&gpio 11 GPIO_ACTIVE_LOW>;
 		};
 
 		led@2 {
-			label = "red:system";
-			gpios = <&gpio 34 GPIO_ACTIVE_LOW>;
+			label = "blue:system";
+			gpios = <&gpio 12 GPIO_ACTIVE_LOW>;
 		};
 	};
-	
 	memory@40000000 {
 		device_type = "memory";
 		reg = <0x40000000 0x10000000>;
